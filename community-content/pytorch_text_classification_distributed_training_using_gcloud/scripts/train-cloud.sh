@@ -82,7 +82,7 @@ workerPoolSpecs:
         - ${JOB_DIR}
   - machineSpec:
       machineType: n1-highcpu-16
-    replicaCount: 20
+    replicaCount: 24
     containerSpec:
       imageUri: us-docker.pkg.dev/vertex-ai-restricted/training/reductionserver:latest
 EOF

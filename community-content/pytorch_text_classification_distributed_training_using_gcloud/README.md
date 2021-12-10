@@ -35,7 +35,7 @@ Please read the [documentation](https://cloud.google.com/vertex-ai/docs/training
 
 Once the prerequisites are satisfied, you may:
 
-1. For local testing, run (refer [notebook](../pytorch-text-classification-vertex-ai-train-tune-deploy.ipynb) for instructions): 
+1. For local testing, run:
     ```
     CUSTOM_TRAIN_IMAGE_URI='gcr.io/{PROJECT_ID}/pytorch_gpu_train_{APP_NAME}'
     cd ./trainer/ && docker build -f Dockerfile -t $CUSTOM_TRAIN_IMAGE_URI .
@@ -59,5 +59,5 @@ source ./scripts/train-cloud.sh
 ```
 
 ### Versions
-This script uses the Deep Learning Containers for PyTorch 1.7.
-* `gcr.io/deeplearning-platform-release/pytorch-gpu.1-8`
+This script uses the Deep Learning Containers for PyTorch 1.9.
+* `gcr.io/deeplearning-platform-release/pytorch-gpu.1-9`
