@@ -53,6 +53,8 @@ To run the trainer code on a different GPU configuration, make the following cha
 * Update the second [`workerPoolSpecs`](https://cloud.google.com/vertex-ai/docs/reference/rest/v1/CustomJobSpec#workerpoolspec) to change the type and number of GPUs.
 * Update the third [`workerPoolSpecs`](https://cloud.google.com/vertex-ai/docs/reference/rest/v1/CustomJobSpec#workerpoolspec) to change the number of [Reduction Server](https://cloud.google.com/vertex-ai/docs/training/distributed-training#reduce_training_time_with_reduction_server) instances.
 
+In addition, Reduction Server works best when PyTorch DDP's [gradient bucket](https://pytorch.org/docs/stable/notes/ddp.html#internal-design) size is sufficiently large (e.g. 64MB) by setting the `bucket_cap_mb` argument in DDP constructor. In this example, `bucket_cap_mb` is `96`. To change the bucket size, change the `BUCKET_CAP_MB` variable in `train-cloud.sh`.
+
 Then, run the script to submit a Custom Job on Vertex Training job:
 ```
 source ./scripts/train-cloud.sh

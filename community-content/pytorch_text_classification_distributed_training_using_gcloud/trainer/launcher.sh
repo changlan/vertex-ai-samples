@@ -24,4 +24,4 @@ python -m torch.distributed.launch \
   --per_device_train_batch_size 8 \
   --learning_rate 2e-5 \
   --num_train_epochs 3 \
-  "$@"
+  $@

@@ -46,6 +46,8 @@ IMAGE_TAG=latest
 # IMAGE_URI: the complete URI location for Cloud Container Registry
 CUSTOM_TRAIN_IMAGE_URI=gcr.io/${PROJECT_ID}/${IMAGE_REPO_NAME}:${IMAGE_TAG}
 
+BUCKET_CAP_MB=96
+
 # Build the docker image
 docker build --no-cache -f ./trainer/Dockerfile -t $CUSTOM_TRAIN_IMAGE_URI ./trainer
 
@@ -65,8 +67,8 @@ workerPoolSpecs:
     containerSpec:
       imageUri: ${CUSTOM_TRAIN_IMAGE_URI}
       args:
-        - --output_dir
-        - ${JOB_DIR}
+        - --output_dir ${JOB_DIR}
+        - --ddp_bucket_cap_mb ${BUCKET_CAP_MB}
   - machineSpec:
       machineType: a2-highgpu-8g
       acceleratorCount: 8
@@ -78,8 +80,8 @@ workerPoolSpecs:
     containerSpec:
       imageUri: ${CUSTOM_TRAIN_IMAGE_URI}
       args:
-        - --output_dir
-        - ${JOB_DIR}
+        - --output_dir ${JOB_DIR}
+        - --ddp_bucket_cap_mb ${BUCKET_CAP_MB}
   - machineSpec:
       machineType: n1-highcpu-16
     replicaCount: 24
